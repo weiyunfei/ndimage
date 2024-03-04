@@ -7,7 +7,7 @@ impl IntoImage for ndarray::ArrayD<u8> {
     fn into_image(self) -> Self::Output {
         let shape = self.shape().to_owned();
 
-        let image = match shape.len() {
+        match shape.len() {
             2 => {
                 // TODO: zero copy
                 let data = self.into_raw_vec();
@@ -25,8 +25,7 @@ impl IntoImage for ndarray::ArrayD<u8> {
                 DynamicImage::ImageRgb8(image)
             }
             _ => unimplemented!(),
-        };
-        image
+        }
     }
 }
 
@@ -36,7 +35,7 @@ mod tests {
     #[test]
     fn test_into_image() {
         use super::*;
-        use image::{GenericImageView, ImageBuffer, Rgb};
+        use image::GenericImageView;
         let data = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
         let shape = vec![3, 2, 3];
         let array = ndarray::ArrayD::from_shape_vec(shape, data).unwrap();

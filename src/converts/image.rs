@@ -24,7 +24,7 @@ where
             ..
         } = self.sample_layout();
         let data = self.into_raw();
-        let ndimage = match channels {
+        match channels {
             1 => {
                 let shape = (height as usize, width as usize);
                 let strides = (height_stride, width_stride);
@@ -38,8 +38,7 @@ where
                 array.into_dyn()
             }
             _ => unimplemented!(),
-        };
-        ndimage
+        }
     }
 }
 

@@ -1,5 +1,3 @@
+#[allow(clippy::explicit_auto_deref)]
 mod image;
-pub use image::*;
-
 mod ndarray;
-pub use ndarray::*;
