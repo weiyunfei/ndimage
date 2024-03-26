@@ -19,7 +19,7 @@ impl IntoImage for ndarray::ArrayD<u8> {
             3 => {
                 // TODO: zero copy
                 let data = self.into_raw_vec();
-                let (_channels, height, width) =
+                let (height, width, _channels) =
                     (shape[0] as u32, shape[1] as u32, shape[2] as u32);
                 let image = ImageBuffer::<Rgb<u8>, Vec<u8>>::from_raw(width, height, data).unwrap();
                 DynamicImage::ImageRgb8(image)
